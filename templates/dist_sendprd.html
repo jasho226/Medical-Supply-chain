@@ -1,0 +1,258 @@
+<html>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Product</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="../static/css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/custom.css">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="../static/js/modernizer.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="host_version"> 
+
+	<!-- Modal -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header tit-up">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Distribute to Retailer</h4>
+			</div>
+			<div class="modal-body customer-box">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs">
+					<li><a class="active" href="#Login" data-toggle="tab">Retailer</a></li>
+					<!--<li><a href="#Registration" data-toggle="tab">Add New</a></li>-->
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form role="form" method="post" action="/dist_prd" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" name="prd_from" placeholder="Product ID from" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" name="prd_to" placeholder="to Product ID" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" name="shop">
+									<option value="">-Retailer-</option>
+					  {% for cc in catt %}
+					  <option>{{ cc[7] }}</option>
+					  {% endfor %}
+					  </select>
+									</select>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Send
+									</button>
+									
+								</div>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+
+    <!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->	
+
+    <!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">
+					<img src="../static/images/logo-hosting.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/dist_home">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/dist_prd">Products </a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Menu </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="/dist_sent">Request Sent </a>
+								<a class="dropdown-item" href="/dist_view">Distributed Products </a>
+								<a class="dropdown-item" href="/dist_req">Retailer Request </a>
+								<a class="dropdown-item" href="/dist_deliver">Deliver to Retailer</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+					</ul>
+					<!--<ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log" href="#" data-toggle="modal" data-target="#login"><span>Retailer</span></a></li>
+                    </ul>-->
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Product Distribution<span class="m_1"></span></h1>
+		</div>
+	</div>
+	
+ 
+	
+
+      <div class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Distribute to Retailer </h3>
+				{% if st=="1" %}
+					{% if expiry_st=="1" %}
+					<h3 style="color:#FF0000">Product has Expired!</h3>
+					{% endif %}
+				
+				{% endif %}
+				
+				{% if act=="1" %}
+					<h4 style="color:#0066CC">{{msg}}</h4>
+					{% elif act=="2" %}
+				<h4 style="color:#FF0000">{{msg}}</h4>
+				
+				{% endif %}
+				<form role="form" method="post" action="/dist_sendprd?pid={{pid}}&rid={{rid}}" class="form-horizontal">
+							<div class="row">
+								
+								<div class="col-md-3">
+								
+									<select class="form-control" name="shopp">
+									<option value="">-Retailer-</option>
+					  {% for cc in catt %}
+					  <option value="{{cc[7]}}">{{ cc[3] }} - {{cc[7]}}</option>
+					  {% endfor %}
+					  </select>
+								</div>
+								<div class="col-md-3">
+								
+									<input class="form-control" name="num_prd" placeholder="No. of Products to be Distribute" type="text">
+									<input type="hidden" name="pid" value="{{pid}}">
+									<input type="hidden" name="rid" value="{{rid}}">
+								</div>
+								<div class="col-md-3">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Send
+									</button>
+									
+								</div>
+							</div>
+						
+						</form>
+				
+					
+            </div><!-- end title -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+   
+
+    <div class="parallax section dbcolor">
+        <div class="container">
+            <div class="row logos">
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_01.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_02.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_03.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_04.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_05.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="../static/images/logo_06.png" alt="" class="img-repsonsive"></a>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <footer class="footer">
+        
+    </footer><!-- end footer -->
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">                   
+                    <p class="footer-company-name">Detect and Prevent Counterfeit Product <a href="#"></a>  <a href="https://html.design/"></a></p>
+                </div>
+
+                <div class="footer-right">
+                   
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <p class="footer-company-name">  <a href="#"></a> <a href="https://html.design/"></a></p>
+
+    <!-- ALL JS FILES -->
+    <script src="../static/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="../static/js/custom.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<html>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Product</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="../static/css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/custom.css">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="../static/js/modernizer.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="host_version"> 
+
+	<!-- Modal -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header tit-up">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Add Products</h4>
+			</div>
+			<div class="modal-body customer-box">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs">
+					<li><a class="active" href="#Login" data-toggle="tab">Product</a></li>
+					<!--<li><a href="#Registration" data-toggle="tab">Products</a></li>-->
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form role="form" method="post" action="/product" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select name="category" class="form-control">
+									<option value="">-Category-</option>
+					  {% for cc in catt %}
+					  <option>{{ cc[1] }}</option>
+					  {% endfor %}
+					  </select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" name="product" placeholder="Product Name" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" name="description" placeholder="Product Detail" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" name="num_piece" placeholder="No. of Packing" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" name="price" placeholder="Price" type="text" required>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" name="location" placeholder="Manufacture Location" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+								Manufacture Date 
+									<input class="form-control" name="mdate" placeholder="" type="date" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+								Expired Date 
+									<input class="form-control" name="edate" placeholder="" type="date" required>
+								</div>
+							</div>
+							
+							<div class="row">							
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Save &amp; Continue
+									</button>
+									
+								</div>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+
+    <!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->	
+
+    <!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">
+					<img src="../static/images/logo-hosting.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="/product">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/dist">Distributor </a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Menu </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="/shop_req">Retailer Approval </a>
+								<a class="dropdown-item" href="/view_req">Request by Distributor</a>
+								<a class="dropdown-item" href="/view_prd">Product Distribution </a>
+								<a class="dropdown-item" href="/view_comp">Complaint </a>
+								<a class="dropdown-item" href="/comp_online">Online Sales Request </a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="/logout">Logout </a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log" href="#" data-toggle="modal" data-target="#login"><span>New Products</span></a></li>
+                    </ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Products<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+		</div>
+	</div>
+	
+    <div id="overviews" class="section lb">
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <h3>Products</h3>
+                   <!-- <p class="lead"></p>-->
+                </div>
+            </div><!-- end title -->
+
+            <hr class="invis"> 
+
+           <div class="row"> 
+		   		{% for rs in data %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="icon-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <i class="flaticon-server global-radius effect-1 alignleft"></i>
+                        <h3>{{rs[2]}} - [{{rs[1]}}]</h3>
+						<p>Product ID: {{rs[0]}}</p>
+                        <p>Price: Rs. {{rs[4]}} 
+						<br>
+						{{rs[5]}}
+						<br>
+						Manufactured on {{rs[6]}}<br>
+						Manufacture Date: {{rs[7]}}<br>
+						Expired Date: {{rs[8]}}
+						<small class="readmore">
+							<a href="/view_prd">View</a>
+						</small>
+						</p>
+                    </div><!-- end icon-wrapper -->
+                </div><!-- end col -->
+				{% endfor %}
+				
+            </div><!-- end row -->
+			<p align="right"><a href="/change1" target="_blank">Change</a></p>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+	<div id="pricing" class="section cl">
+		<div class="container">
+			<div class="row text-left stat-wrap">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-hosting"></i></span>
+					<p class="stat_count">12000</p>
+					<h3>Hosted Sites</h3>
+				</div><!-- end col -->
+
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-domain-registration"></i></span>
+					<p class="stat_count">24000</p>
+					<h3>Sold Domains</h3>
+				</div><!-- end col -->
+
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-mail"></i></span>
+					<p class="stat_count">5000</p>
+					<h3>Email Accounts</h3>
+				</div><!-- end col -->
+			</div><!-- end row -->
+		</div><!-- end container -->
+	</div><!-- end section -->
+
+    
+
+  
+    <footer class="footer">
+        
+    </footer><!-- end footer -->
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">                   
+                    <p class="footer-company-name"> <a href="#"></a>  <a href="https://html.design/"></a></p>
+                </div>
+
+                <div class="footer-right">
+                    <ul class="footer-links-soi">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-github"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+					</ul><!-- end links -->
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <p class="footer-company-name">  <a href="#"></a> <a href="https://html.design/"></a></p>
+
+    <!-- ALL JS FILES -->
+    <script src="../static/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="../static/js/custom.js"></script>
+
+</body>
+</html>
